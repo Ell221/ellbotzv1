@@ -384,7 +384,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
             }
                 break
             case prefix+'stickermenu': case prefix+'stikermenu': case prefix+'menusticker': case prefix+'menusticker':{
-                textImg(stickerMenu(prefix))
+                textImg(stickerMenu(prefix, setting.ownerName))
             }
                 break
             case prefix+'creatormenu': case prefix+'ownermenu':{
@@ -392,7 +392,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
             }
                 break
             case prefix+'groupmenu': case prefix+'grupmenu':{
-                textImg(groupMenu(prefix))
+                textImg(groupMenu(prefix, setting.ownerName))
             }
                 break
             case prefix+'sistemmenu': case prefix+'menusistem':{
@@ -1097,7 +1097,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 xinz.sendContact(from, q.split("|")[0], q.split("|")[1], msg)
                 break
             case prefix+'hidetag':{
-                if (!isPremium) return reply(`Kamu bukan user premium, kirim perintah *${prefix}daftarprem* untuk membeli premium`)
+                if (!isPremium && !isOwner) return reply(`Kamu bukan user premium, kirim perintah *${prefix}daftarprem* untuk membeli premium`)
                 if (args.length < 2) return reply(`Masukkan text`)
                 let arr = [];
                 for (let i of groupMembers){
@@ -1113,24 +1113,41 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 } else {
                     textImg(`Limit : ${isPremium ? 'Unlimited' : `${getLimit(sender, limitCount, limit)}/${limitCount}`}\nLimit Game : ${cekGLimit(sender, gcount, glimit)}/${gcount}\nBalance : $${getBalance(sender, balance)}\n\nKamu dapat membeli limit dengan ${prefix}buylimit dan ${prefix}buyglimit untuk membeli game limit`)
                 }
-                break
+               break
             case prefix+'owner':
             case prefix+'creator':
                 xinz.sendContact(from, ownerNumber.split("@")[0], setting.ownerName, msg)
-                .then((res) => xinz.sendMessage(from, 'Nih kontak ownerku', text, {quoted: res}))
+                .then((res) => xinz.sendMessage(from, 'Nih kontak ownerku ^^', text, {quoted: res}))
+                break
+            case prefix+'coowner':
+                xinz.sendContact(from, setting.coownerNumber.split("@")[0], setting.coownerName, msg)
+                .then((res) => xinz.sendMessage(from, 'Nih kontak coownerku ^^', text, {quoted: res}))
+                break
+            case prefix+'other':
+                 xinz.sendContact(from, setting.otherNumber.split("@")[0], setting.otherName, msg)
+                .then((res) => xinz.sendMessage(from, 'Nih kontak otherku ^^', text, {quoted: res}))
                 break
             case prefix+'ping':
             case prefix+'speed':{
                 let timestamp = speed();
-				let latensi = speed() - timestamp
+                let latensi = speed() - timestamp
                 textImg(`${latensi.toFixed(4)} Second`)
             }
                 break
             case prefix+'donate': case prefix+'donasi':
                 textImg(setting.txtDonasi)
                 break
+            case prefix+'rules':
+                textImg(setting.txtRules)
+                break
+            case prefix+'buyprem': case prefix+'daftarprem':
+                textImg(setting.txtBuyprem)
+                break 
+            case prefix+'sewabot': case prefix+'sb': case prefix+'iklan':
+                textImg(setting.txtSewa)
+                break
             case prefix+'sourcecode': case prefix+'sc': case prefix+'src':
-                textImg(`Bot ini menggunakan sc : https://github.com/Xinz-Team/XinzBot`)
+                textImg(`Bot ini menggunakan sc : https://github.com/Ell221/EllBot`)
                 break
             case prefix+'runtime':
                 textImg(`${runtime(process.uptime())}`)

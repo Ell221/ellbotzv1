@@ -1,7 +1,7 @@
 {
     "wait": "*Tunggu permintaan anda sedang diproses*",
     "error": {
-        "Iv": "Link yang kamu berikan tidak valid",
+        "Iv": "Link yang kamu berikan tidak valid ",
         "api": "Maaf terjadi kesalahan"
     },
     "OnlyGrup": "Perintah ini hanya bisa digunakan di grup",
