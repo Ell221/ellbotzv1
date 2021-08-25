@@ -435,8 +435,8 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 textImg(makerMenu(prefix, setting.ownerName))
             }
                 break
-            case prefix+'othermenu': case prefix+'menuother':{
-                textImg(otherMenu(prefix, setting.ownerName))
+            case prefix+'usermenu': case prefix+'menuuser':{
+                textImg(userMenu(prefix, setting.ownerName))
             }
                 break
             case prefix+'nsfwmenu': case prefix+'hentaimenu': case prefix+'menunsfw': case prefix+'menuhentai':{
@@ -1147,7 +1147,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 textImg(setting.txtSewa)
                 break
             case prefix+'sourcecode': case prefix+'sc': case prefix+'src':
-                textImg(`Bot ini menggunakan sc : https://github.com/Ell221/EllBot`)
+                textImg(`Bot ini menggunakan sc : https://github.com/Ell221/ellbotz-main`)
                 break
             case prefix+'runtime':
                 textImg(`${runtime(process.uptime())}`)
@@ -2049,19 +2049,19 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     let encmedia = isQuotedImage ? JSON.parse(JSON.stringify(msg).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : msg
                     let media = await xinz.downloadMediaMessage(encmedia)
                     for (let i of chiit){
-                        xinz.sendMessage(i.jid, media, image, {caption: q})
+                        xinz.sendMessage(i.jid, media, image, {caption: `*[ _ELL BOTZ BROADCAST_ ]*\n\n${body.slice(4)}`})
                     }
                     reply(`Sukses`)
                 } else if (isVideo || isQuotedVideo) {
                     let encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(msg).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : msg
                     let media = await xinz.downloadMediaMessage(encmedia)
                     for (let i of chiit){
-                        xinz.sendMessage(i.jid, media, video, {caption: q})
+                        xinz.sendMessage(i.jid, media, video, {caption: `*[ _ELL BOTZ BROADCAST_ ]*\n\n${body.slice(4)}`})
                     }
                     reply(`Sukses`)
                 } else {
                     for (let i of chiit){
-                        xinz.sendMessage(i.jid, q, text)
+                        xinz.sendMessage(i.jid, `*[ _ELL BOTZ BROADCAST_ ]*\n\n${body.slice(4)}`, text)
                     }
                     reply(`Sukses`)
                 }
@@ -2184,7 +2184,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
             case prefix+'leave':
                 if (!isGroup) return reply(mess.OnlyGrup)
                 if (!isGroupAdmins && !isOwner)return reply(mess.GrupAdmin)
-                reply('bye...')
+                reply('Ja Matane Sayonara Minasan ^^')
                 .then(() => xinz.groupLeave(from))
                 break
             case prefix+'setdesc':
