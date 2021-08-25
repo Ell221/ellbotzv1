@@ -20,7 +20,7 @@ module.exports = async(xinz, anj, welcome, left) => {
         if (anj.participants[0] === xinz.user.jid){
             await sleep(5000)
             xinz.updatePresence(anj.jid, Presence.composing)
-            xinz.sendMessage(anj.jid, `Hai aku ${botName}, silahkan kirim #menu`, MessageType.text)
+            xinz.sendMessage(anj.jid, `Hai aku ${botName}, silahkan kirim #menu dan #rules untuk mengetahui peraturan bot ^^`, MessageType.text)
         } else if (isWelcome){
             try {
                 var pic = await xinz.getProfilePicture(anj.participants[0])
