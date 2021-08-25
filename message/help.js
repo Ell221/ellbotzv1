@@ -23,11 +23,14 @@ exports.newMenu = (ucapan, ownerName, botName, prefix, pendaftar, runtime, pushn
 ├≽ *Status* : *${isOwner ? 'OWNER' : isPremium ? 'Premium' : 'Gratisan'}*
 ├≽ *Limit* : *${isPremium ? 'Unlimited' : `${sisalimit}/${limitCount}`}*
 ├≽ *Limit Game* : *${isOwner ? 'Unlimited' : `${glimit}/${gcount}`}*
-├≽ *Expired Prem : ${isOwner ? '-' : isPremium ? expired : 'Not Premium'}*
+├≽ *Expired Prem : ${isOwner ? 'Unlimited' : isPremium ? expired : 'Not Premium'}*
+├≽ *Join Grup Bot: https://chat.whatsapp.com/Jfn4aZl9GJhK7XqnnLwBtY*
 ├────────────────────
 ╞═══ 《 *MENU* 》 ═══
 ├────────────────────
+├≽ *${prefix}rules*
 ├≽ *${prefix}stickermenu*
+├≽ *${prefix}sewa*
 ├≽ *${prefix}creatormenu*
 ├≽ *${prefix}groupmenu*
 ├≽ *${prefix}sistemmenu*
@@ -55,6 +58,8 @@ exports.newMenu = (ucapan, ownerName, botName, prefix, pendaftar, runtime, pushn
 ├≽ *Nanda*
 ├≽ *Juwen*
 ├≽ *Adiwajshing/Baileys*
+├≽ *Ell*
+├≽ *Fikriapri*
 ╘═══ 《 *By ${ownerName}* 》 ═══`
 }
 
@@ -301,8 +306,8 @@ exports.makerMenu = (prefix, ownerName) => {
 ╘═══ 《 *By ${ownerName}* 》 ═══`
 }
 
-exports.otherMenu = (prefix, ownerName) => {
-    return `╒═══ 《 *OTHER MENU* 》 ═══
+exports.userMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *USER MENU* 》 ═══
 ├────────────────────
 ├≽ *cekprefix*
 ├≽ *${prefix}stats*
@@ -311,6 +316,8 @@ exports.otherMenu = (prefix, ownerName) => {
 ├≽ *${prefix}runtime*
 ├≽ *${prefix}speed*
 ├≽ *${prefix}owner*
+├≽ *${prefix}coowner*
+├≽ *${prefix}other*
 ├≽ *${prefix}donasi*
 ├≽ *${prefix}sourcecode*
 ├≽ *${prefix}cekprem*

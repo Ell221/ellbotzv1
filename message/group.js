@@ -27,7 +27,7 @@ module.exports = async(xinz, anj, welcome, left) => {
             } catch {
                 var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
             }
-            xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Hai @${anj.participants[0].split("@")[0]}, selamat datang di ${groupName}`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
+            xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Hai @${anj.participants[0].split("@")[0]}, selamat datang di ${groupName}\n\nSEMOGA BETAH YAA ><`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
         }
     } else if (anj.action === 'remove' && isLeft){
         try {
@@ -35,6 +35,6 @@ module.exports = async(xinz, anj, welcome, left) => {
         } catch {
             var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
         }
-        xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Sayonara @${anj.participants[0].split("@")[0]}`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
+        xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Sayonara @${anj.participants[0].split("@")[0]}\n\nAKHIRNYA BEBAN GRUP BERKURANG, JANGAN BALIK LAGI OM ^^`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
     }
 }
