@@ -1,0 +1,366 @@
+exports.menu = (prefix, i) => {
+    return `*INI WM ELL*
+`
+}
+
+exports.newMenu = (ucapan, ownerName, botName, prefix, pendaftar, runtime, pushname, isOwner, isPremium, sisalimit, limitCount, glimit, gcount, expired, tanggal, jam) => {
+    return `${ucapan.data.result} ${pushname}
+╒═══ 《 *${botName}* 》 ═══
+├────────────────────
+├≽ *Creator : ${ownerName}*
+├≽ *Coowner : Fikriapri (github.com/Fikriapri)*
+├≽ *Lib : Baileys V.3.5.1*
+├≽ *Prefix : 「 ${prefix} 」*
+├≽ *Total Fitur : 200+*
+├≽ *Total Pengguna : ${pendaftar.length}*
+├≽ *Tanggal : ${tanggal}*
+├≽ *Pukul : ${jam}*
+├≽ *Runtime Bot*
+├≽ *${runtime}*
+├≽ *[ _WARNING!!!_ ] : BOT AKTIF HANYA SAMPAI JAM 22.00*
+├────────────────────
+╞═══ 《 *USER INFO* 》 ═══
+├────────────────────
+├≽ *Name* : *${pushname}*
+├≽ *Status* : *${isOwner ? 'OWNER' : isPremium ? 'Premium' : 'Gratisan'}*
+├≽ *Limit* : *${isPremium ? 'Unlimited' : `${sisalimit}/${limitCount}`}*
+├≽ *Limit Game* : *${isOwner ? 'Unlimited' : `${glimit}/${gcount}`}*
+├≽ *Expired Prem : ${isOwner ? 'Unlimited' : isPremium ? expired : 'Not Premium'}*
+├≽ *Join Grup Bot: https://chat.whatsapp.com/Jfn4aZl9GJhK7XqnnLwBtY*
+├────────────────────
+╞═══ 《 *MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}rules*
+├≽ *${prefix}stickermenu*
+├≽ *${prefix}sewa*
+├≽ *${prefix}requestfitur <fitur apa>*
+├≽ *${prefix}creatormenu*
+├≽ *${prefix}groupmenu*
+├≽ *${prefix}sistemmenu*
+├≽ *${prefix}gabutmenu*
+├≽ *${prefix}gamemenu*
+├≽ *${prefix}downloadmenu*
+├≽ *${prefix}searchmenu*
+├≽ *${prefix}stalkmenu*
+├≽ *${prefix}randommenu*
+├≽ *${prefix}animemenu*
+├≽ *${prefix}nsfwmenu*
+├≽ *${prefix}toolsmenu*
+├≽ *${prefix}makermenu*
+├≽ *${prefix}storagemenu*
+├≽ *${prefix}othermenu*
+├────────────────────
+╞═══ 《 *THANKS TO* 》 ═══
+├────────────────────
+├≽ *Xinz-Team*
+├≽ *Aqulzz*
+├≽ *Nafizz*
+├≽ *Y-DhyZx*
+├≽ *Ramlan ID*
+├≽ *X-MrG3P5*
+├≽ *Nanda*
+├≽ *Juwen*
+├≽ *Adiwajshing/Baileys*
+├≽ *Ell*
+├≽ *Fikriapri*
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.stickerMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *STICKER MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}sticker*
+├≽ *${prefix}stickergif*
+├≽ *${prefix}swm*
+├≽ *${prefix}take*
+├≽ *${prefix}toimg*
+├≽ *${prefix}tovideo*
+├≽ *${prefix}attp*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.ownerMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *CREATOR MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}addprem*
+├≽ *${prefix}delprem*
+├≽ *${prefix}ban*
+├≽ *${prefix}unban*
+├≽ *${prefix}join*
+├≽ *${prefix}addbaword*
+├≽ *${prefix}delbaword*
+├≽ *${prefix}addchangelog*
+├≽ *${prefix}public*
+├≽ *${prefix}self*
+├≽ *${prefix}exif*
+├≽ *${prefix}bc*
+├≽ *${prefix}setprefix*
+├≽ *${prefix}setthumb*
+├≽ *${prefix}clearall*
+├≽ *${prefix}>*
+├≽ *${prefix}$*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.groupMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *GROUP MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}afk*
+├≽ *${prefix}infogrup*
+├≽ *${prefix}add*
+├≽ *${prefix}kick*
+├≽ *${prefix}promote*
+├≽ *${prefix}demote*
+├≽ *${prefix}linkgc*
+├≽ *${prefix}leave*
+├≽ *${prefix}setdesc*
+├≽ *${prefix}setgrupname*
+├≽ *${prefix}setppgrup*
+├≽ *${prefix}opengrup*
+├≽ *${prefix}closegrup*
+├≽ *${prefix}tagall*
+├≽ *${prefix}tagme*
+├≽ *${prefix}kontak*
+├≽ *${prefix}hidetag*
+├≽ *${prefix}getpp*
+├≽ *${prefix}mute*
+├≽ *${prefix}unmute*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.sistemMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *SISTEM MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}antilink*
+├≽ *${prefix}antiwame*
+├≽ *${prefix}antibadword*
+├≽ *${prefix}welcome*
+├≽ *${prefix}left*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.gabutMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *GABUTZ MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}apakah*
+├≽ *${prefix}bisakah*
+├≽ *${prefix}kapankah*
+├≽ *${prefix}hobby*
+├≽ *${prefix}rate*
+├≽ *${prefix}cekbapak*
+├≽ *${prefix}seberapagay*
+├≽ *${prefix}truth*
+├≽ *${prefix}dare*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.gameMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *GAME MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}tictactoe*
+├≽ *${prefix}delttt*
+├≽ *${prefix}tebakgambar*
+├≽ *${prefix}family100*
+├≽ *${prefix}suit*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.downloadMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *DOWNLOAD MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}ytmp3*
+├≽ *${prefix}ytmp4*
+├≽ *${prefix}play*
+├≽ *${prefix}playmp4*
+├≽ *${prefix}tiktok*
+├≽ *${prefix}tiktokmp3*
+├≽ *${prefix}instagram*
+├≽ *${prefix}facebook*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.searchMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *SEARCH MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}yts*
+├≽ *${prefix}pinterest*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.stalkMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *STALKER MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}igstalk*
+├≽ *${prefix}ghstalk*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.randomMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *RANDOM MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}quotes*
+├≽ *${prefix}darkjokes*
+├≽ *${prefix}pantun*
+├≽ *${prefix}bucin*
+├≽ *${prefix}cehor*
+├≽ *${prefix}fakta*
+├≽ *${prefix}katabijak*
+├≽ *${prefix}motivasi*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.animeMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *ANIME MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}waifu* 《 ERROR OM 》
+├≽ *${prefix}loli* 《 ERROR OM 》
+├≽ *${prefix}husbu* 《 ERROR OM 》
+├≽ *${prefix}shota* 《 ERROR OM 》
+├≽ *${prefix}nekonime* 《 ERROR OM 》
+├≽ *${prefix}megumin* 《 ERROR OM 》
+├≽ *${prefix}sagiri* 《 ERROR OM 》
+├≽ *${prefix}shinobu* 《 ERROR OM 》
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.toolsMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *TOOLS MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}nulis*
+├≽ *${prefix}nuliskiri*
+├≽ *${prefix}nuliskanan*
+├≽ *${prefix}foliokiri*
+├≽ *${prefix}foliokanan*
+├≽ *${prefix}tinyurl*
+├≽ *${prefix}translate*
+├≽ *${prefix}ebase64*
+├≽ *${prefix}debase64*
+├≽ *${prefix}ehex*
+├≽ *${prefix}dehex*
+├≽ *${prefix}ebinary*
+├≽ *${prefix}debinary*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.makerMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *MAKER MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}hartatahta*
+├≽ *${prefix}neon*
+├≽ *${prefix}matrix*
+├≽ *${prefix}blackpink*
+├≽ *${prefix}halloween*
+├≽ *${prefix}thundername*
+├≽ *${prefix}devilwings*
+├≽ *${prefix}cloudtext*
+├≽ *${prefix}bloodtext*
+├≽ *${prefix}bloodtext2*
+├≽ *${prefix}steeltext*
+├≽ *${prefix}lavatext*
+├≽ *${prefix}toxiclogo*
+├≽ *${prefix}dropwater*
+├≽ *${prefix}metaldark*
+├≽ *${prefix}sandwrite*
+├≽ *${prefix}3dwater*
+├≽ *${prefix}graffiti*
+├≽ *${prefix}graffiti2*
+├≽ *${prefix}phlogo*
+├≽ *${prefix}glitch*
+├≽ *${prefix}graffiti3*
+├≽ *${prefix}layeredtext*
+├≽ *${prefix}vintage*
+├≽ *${prefix}3dspace*
+├≽ *${prefix}stonetext*
+├≽ *${prefix}avengers*
+├≽ *${prefix}marvellogo*
+├≽ *${prefix}3dmetal*
+├≽ *${prefix}lionlogo*
+├≽ *${prefix}wolflogo*
+├≽ *${prefix}ninjalogo*
+├≽ *${prefix}pubglogo*
+├≽ *${prefix}shadowtext*
+├≽ *${prefix}smoketext*
+├≽ *${prefix}romancetext*
+├≽ *${prefix}carvedwood*
+├≽ *${prefix}harrypotter*
+├≽ *${prefix}flamingtext*
+├≽ *${prefix}falleaves*
+├≽ *${prefix}underwater*
+├≽ *${prefix}wolfmetal*
+├≽ *${prefix}woodboard*
+├≽ *${prefix}undergrass*
+├≽ *${prefix}coffetext*
+├≽ *${prefix}lovetext*
+├≽ *${prefix}burnpaper*
+├≽ *${prefix}lovemessage*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.otherMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *USER MENU* 》 ═══
+├────────────────────
+├≽ *cekprefix*
+├≽ *${prefix}stats*
+├≽ *${prefix}limit*
+├≽ *${prefix}balance*
+├≽ *${prefix}runtime*
+├≽ *${prefix}speed*
+├≽ *${prefix}owner*
+├≽ *${prefix}coowner*
+├≽ *${prefix}other*
+├≽ *${prefix}donasi*
+├≽ *${prefix}sourcecode*
+├≽ *${prefix}cekprem*
+├≽ *${prefix}listprem*
+├≽ *${prefix}listban*
+├≽ *${prefix}listbadword*
+├≽ *${prefix}buylimit*
+├≽ *${prefix}buyglimit*
+├≽ *${prefix}topglobal*
+├≽ *${prefix}toplocal*
+├≽ *${prefix}readmore*
+├≽ *${prefix}cekapikey*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.hentaiMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *18+ MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}randomhentong* 《 ERROR OM 》
+├≽ *${prefix}kemonomimi* 《 ERROR OM 》
+├≽ *${prefix}ero* 《 ERROR OM 》
+├≽ *${prefix}echi* 《 ERROR OM 》
+├≽ *${prefix}ahegao* 《 ERROR OM 》
+├≽ *${prefix}trap* 《 ERROR OM 》
+├≽ *${prefix}neko* 《 ERROR OM 》
+├≽ *${prefix}blowjob* 《 ERROR OM 》
+├≽ *${prefix}kitsune* 《 ERROR OM 》
+├≽ *${prefix}yuri* 《 ERROR OM 》
+├≽ *${prefix}boobs* 《 ERROR OM 》
+├≽ *${prefix}kuni* 《 ERROR OM 》
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
+
+exports.storageMenu = (prefix, ownerName) => {
+    return `╒═══ 《 *STORAGE MENU* 》 ═══
+├────────────────────
+├≽ *${prefix}sound*
+├≽ *${prefix}video*
+├─────────────────────
+╘═══ 《 *By ${ownerName}* 》 ═══`
+}
