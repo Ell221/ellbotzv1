@@ -39,9 +39,9 @@
 ## For Windows
 ```bash
 git clone https://github.com/Ell211/EllBotz.git
-cd ELL BOTZ
-npm install
-node main
+cd c:\ellbot-main
+npm i
+npm start
 ```
 ## For Termux
 ```bash
