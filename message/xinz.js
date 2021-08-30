@@ -1,3 +1,6 @@
+//INI SCRIPT JANGAN SEMBARANGAN DIUBAH NANTI MALAH ERROR (JANGAN LUPA TITIK KOMA!!!)
+//JANGAN LUPA SUPPORT AUTHOR DAN COOWNER BOT INI YAA ^^
+//KALO ERROR CHAT GUE wa.me/6285717202751
 "use strict";
 const {
     WAConnection,
@@ -215,14 +218,14 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
         // Anti link
         if (isGroup && isAntiLink && !isOwner && !isGroupAdmins && isBotGroupAdmins){
             if (chats.match(/(https:\/\/chat.whatsapp.com)/gi)) {
-                reply(`*「 GROUP LINK DETECTOR 」*\n\nSepertinya kamu mengirimkan link grup, maaf kamu akan di kick`)
+                reply(`*「 GROUP LINK DETECTED 」*\n\nSepertinya kamu mengirimkan link grup, maaf kamu akan di kick`)
                 xinz.groupRemove(from, [sender])
             }
         }
         // Anti wame
         if (isGroup && isAntiWame && !isOwner && !isGroupAdmins && isBotGroupAdmins){
             if (chats.match(/(wa.me\/)/gi)) {
-                reply(`*「 NOMOR LINK DETECTOR 」*\n\nSepertinya kamu mengirimkan link nomor, maaf kamu akan di kick`)
+                reply(`*「 NOMOR LINK DETECTED 」*\n\nSepertinya kamu mengirimkan link nomor, maaf kamu akan di kick`)
                 xinz.groupRemove(from, [sender])
             }
         }
@@ -230,18 +233,14 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
         if (isGroup && isBadword && !isOwner && !isGroupAdmins){
             for (let kasar of badword){
                 if (chats.toLowerCase().includes(kasar)){
-                    if (isCountKasar(sender, senbadword)){
                         if (!isBotGroupAdmins) return reply(`Kamu beruntung karena bot bukan admin`)
-                        reply(`*「 ANTI BADWORD 」*\n\nSepertinya kamu sudah berkata kasar lebih dari 5x, maaf kamu akan di kick`)
+                        reply(`*「 ANTI BADWORD DETECTED 」*\n\nSepertinya kamu sudah berkata kasar , maaf kamu akan di kick`)
                         xinz.groupRemove(from, [sender])
-                        delCountKasar(sender, senbadword)
                     } else {
-                        addCountKasar(sender, senbadword)
                         reply(`Kamu terdeteksi berkata kasar\nJangan ulangi lagi atau kamu akan dikick`)
                     }
                 }
             }
-        }
 
         // Banned
         if (isBan) return
@@ -436,7 +435,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
             }
                 break
             case prefix+'usermenu': case prefix+'menuuser':{
-                textImg(userMenu(prefix, setting.ownerName))
+                textImg(otherMenu(prefix, setting.ownerName))
             }
                 break
             case prefix+'nsfwmenu': case prefix+'hentaimenu': case prefix+'menunsfw': case prefix+'menuhentai':{
@@ -455,6 +454,15 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
 				exif.create(namaPack, authorPack)
 				await reply('Done gan')
             }
+                 break
+            case 'fakethumbnail': case 'fthumbnail': case 'fakethumb':
+                if ((isMedia && !xinz.message.videoMessage || isQuotedImage)) {
+                    let encmedia = isQuotedImage ? JSON.parse(JSON.stringify(xinz).replace('quotedM','m')).message.extendedTextMessage.contextInfo : xinz
+                    let media = await xinz.downloadMediaMessage(encmedia)
+                    xinz.sendFakeImg(from, media, arg, fakeimage, xinz)
+                } else {
+                    xinz.reply(from, `Kirim gambar atau reply dengan caption ${prefix}fakethumb caption`, xinz)
+                }
 				break
             case prefix+'sticker':
             case prefix+'stiker':
@@ -594,9 +602,8 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                     })
                 }else {
                     reply(`Kirim gambar/video dengan caption ${prefix}stickerwm nama|author atau tag gambar/video yang sudah dikirim\nNote : Durasi video maximal 10 detik`)
-                }
             }
-                break
+        }        break
             case prefix+'tomp4':
             case prefix+'toimg':
             case prefix+'tomedia':{
@@ -620,7 +627,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                                 fs.unlinkSync(outGif)
                                 return reply(`Error`)
                             }
-                            xinz.sendVideo(from, fs.readFileSync(outMp4), 'Nih', msg)
+                            xinz.sendVideo(from, fs.readFileSync(outMp4), 'Nih Om', msg)
                             .then(() => {
                                 fs.unlinkSync(outMp4)
                                 limitAdd(sender, limit)
@@ -633,12 +640,12 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
 						if (err) return reply('Gagal :V')
-						xinz.sendMessage(from, fs.readFileSync(ran), image, {quoted: msg, caption: 'NIH'})
+						xinz.sendMessage(from, fs.readFileSync(ran), image, {quoted: msg, caption: 'NIH OM ^^'})
                         limitAdd(sender,  limit)
 						fs.unlinkSync(ran)
-					})
-					}
+					})   
                 }
+            }
 				break
             case prefix+'attp':{
                 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
@@ -650,7 +657,7 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                     xinz.sendMessage(from, fs.readFileSync(`./sticker/attp.webp`), sticker, {quoted: msg})
                     limitAdd(sender, limit)
                     fs.unlinkSync(`./sticker/attp.webp`)	
-                })
+                })          
             }
                 break
             case prefix+'tinyurl':
@@ -1132,7 +1139,27 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
                 let timestamp = speed();
                 let latensi = speed() - timestamp
                 textImg(`${latensi.toFixed(4)} Second`)
+                 let timestampi = speed();
+                let latensii = speed() - timestampi
+                const { wa_version, mcc, mnc, os_version, device_manufacturer, device_model } = xinz.user.phone
+                let anu = process.uptime()
+                let teskny = `*V. Whatsapp :* ${wa_version}
+*Baterai :* ${baterai.baterai}%
+*Charge :* ${baterai.cas === 'true' ? 'Ya' : 'Tidak'}
+*RAM :* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+*MCC :* ${mcc}
+*MNC :* ${mnc}
+*Versi OS :* ${os_version}
+*Merk HP :* ${device_manufacturer}
+*Versi HP :* ${device_model}
+*Group Chat :* ${giid.length}
+*Personal Chat :* ${totalchat.length - giid.length}
+*Total Chat :* ${totalchat.length}
+*Speed :* ${latensii.toFixed(4)} Second
+*Runtime :* ${runtime(anu)}`
+                reply(teskny)
             }
+
                 break
             case prefix+'donate': case prefix+'donasi':
                 textImg(setting.txtDonasi)
@@ -1140,11 +1167,21 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
             case prefix+'rules':
                 textImg(setting.txtRules)
                 break
+            case prefix+'izinadmin': case prefix+'izinsharelinkgrup': case prefix+'izin':
+                textImg(setting.txtIzin)
+                break
+            case prefix+'requestfitur': case prefix+'request': case prefix+'req':
+            case prefix+'fitur':
+                textImg(setting.txtRequest)
+                break
             case prefix+'buyprem': case prefix+'daftarprem':
                 textImg(setting.txtBuyprem)
                 break 
-            case prefix+'sewabot': case prefix+'sb': case prefix+'iklan':
+            case prefix+'sewabot': case prefix+'sb': case prefix+'iklan': case prefix+'sewa':
                 textImg(setting.txtSewa)
+                break
+            case prefix+'listpayment': case prefix+'lp': case prefix+'list':
+                textImg(setting.ListPayment)         
                 break
             case prefix+'sourcecode': case prefix+'sc': case prefix+'src':
                 textImg(`Bot ini menggunakan sc : https://github.com/Ell221/ellbotz-main`)
@@ -1165,27 +1202,8 @@ module.exports = async(xinz, msg, blocked, baterai, _afk, welcome, left) => {
 						giid.push(id)
 					}
 				}
-                let timestampi = speed();
-				let latensii = speed() - timestampi
-                const { wa_version, mcc, mnc, os_version, device_manufacturer, device_model } = xinz.user.phone
-                let anu = process.uptime()
-                let teskny = `*V. Whatsapp :* ${wa_version}
-*Baterai :* ${baterai.baterai}%
-*Charge :* ${baterai.cas === 'true' ? 'Ya' : 'Tidak'}
-*RAM :* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
-*MCC :* ${mcc}
-*MNC :* ${mnc}
-*Versi OS :* ${os_version}
-*Merk HP :* ${device_manufacturer}
-*Versi HP :* ${device_model}
-*Group Chat :* ${giid.length}
-*Personal Chat :* ${totalchat.length - giid.length}
-*Total Chat :* ${totalchat.length}
-*Speed :* ${latensii.toFixed(4)} Second
-*Runtime :* ${runtime(anu)}`
-				reply(teskny)
             }
-				break
+                   break
 //------------------< Downloader >-------------------
             case prefix+'ytmp4':{
                 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
@@ -1728,10 +1746,10 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     for (let i = 0; i < mentioned.length; i++){
                     _prem.addPremiumUser(mentioned[0], args[2], premium)
                     }
-                    reply('Sukses')
+                    reply('Sukses menambahkan premium')
                 } else {
                     _prem.addPremiumUser(args[1] + '@s.whatsapp.net', args[2], premium)
-                    reply('Sukses')
+                    reply('Sukses menambahkan premium')
                 }
                 break
             case prefix+'delprem':
@@ -1742,7 +1760,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                         premium.splice(_prem.getPremiumPosition(mentioned[i], premium), 1)
                         fs.writeFileSync('./database/premium.json', JSON.stringify(premium))
                     }
-                    reply('Sukses')
+                    reply('Sukses menghapus premium')
                 } else {
                     premium.splice(_prem.getPremiumPosition(args[1] + '@s.whatsapp.net', premium), 1)
                     fs.writeFileSync('./database/premium.json', JSON.stringify(premium))
@@ -2074,8 +2092,8 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
 				if (!isGroupAdmins && !isOwner)return reply(mess.GrupAdmin)
                 if (!isQuotedMsg) return reply(`Reply pesan dari bot`)
                 if (!quotedMsg.fromMe) return reply(`Reply pesan dari bot`)
-				xinz.deleteMessage(from, { id: msg.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
-				break
+				xinz.deleteMessage(from, { id: msg.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })				
+                break
             case prefix+'afk':
                 if (!isGroup) return reply(mess.OnlyGrup)
                 if (isAfkOn) return reply('afk sudah diaktifkan sebelumnya')
@@ -2094,7 +2112,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 } catch {
                     var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
                 }
-                let ingfo = `*G R O U P I N F O*\n\n*Name :* ${groupName}\n*ID Grup :* ${from}\n*Dibuat :* ${moment(`${groupMetadata.creation}` * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\n*Owner Grup :* @${groupMetadata.owner.split('@')[0]}\n*Jumlah Admin :* ${groupAdmins.length}\n*Jumlah Peserta :* ${groupMembers.length}\n*Welcome :* ${isWelcome ? 'Aktif' : 'Mati'}\n*Left :* ${isLeft ? 'Aktif' : 'Mati'}\n*AntiLink :* ${isAntiLink ? 'Aktif' : 'Mati'}\n*AntiWame :* ${isAntiWame ? 'Aktif' : 'Mati'}\n*AntiBadword :* ${isBadword ? 'Aktif' : 'Mati'}\n*nsfw :* ${isNsfw ? 'Aktif' : 'Mati'}\n*Desc :* \n${groupMetadata.desc}`
+                let ingfo = `*_G R O U P I N F O_*\n\n*Name :* ${groupName}\n*ID Grup :* ${from}\n*Dibuat :* ${moment(`${groupMetadata.creation}` * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\n*Owner Grup :* @${groupMetadata.owner.split('@')[0]}\n*Jumlah Admin :* ${groupAdmins.length}\n*Jumlah Peserta :* ${groupMembers.length}\n*Welcome :* ${isWelcome ? 'Aktif' : 'Mati'}\n*Left :* ${isLeft ? 'Aktif' : 'Mati'}\n*AntiLink :* ${isAntiLink ? 'Aktif' : 'Mati'}\n*AntiWame :* ${isAntiWame ? 'Aktif' : 'Mati'}\n*AntiBadword :* ${isBadword ? 'Aktif' : 'Mati'}\n*nsfw :* ${isNsfw ? 'Aktif' : 'Mati'}\n*Desc :* \n${groupMetadata.desc}`
                 xinz.sendMessage(from, await getBuffer(pic), image, {quoted: msg, caption: ingfo, contextInfo: {"mentionedJid": [groupMetadata.owner.replace('@c.us', '@s.whatsapp.net')]}})
                 break
             case prefix+'add':
@@ -2110,7 +2128,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
 					.then((res) => reply(jsonformat(res)))
 					.catch((err) => reply(jsonformat(err)))
 				} else {
-					reply()
+					reply('sukses')
 				}
                 break
             case prefix+'kick':
@@ -2150,8 +2168,9 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     xinz.groupMakeAdmin(from, [args[1] + '@s.whatsapp.net'])
                     .then((res) => reply(jsonformat(res)))
                     .catch((err) => reply(jsonformat(err)))
-                } else {
-                    reply(`Kirim perintah ${prefix}promote @tag atau nomor atau reply pesan orang yang ingin di promote`)
+                } else{
+                    reply(`Sukes menaikan jabatan ${pushname} menjadi admin grup`)
+                 return reply(`Kirim perintah ${prefix}promote @tag atau nomor atau reply pesan orang yang ingin di promote`)
                 }
                 break
             case prefix+'demote':
@@ -2173,6 +2192,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     .catch((err) => reply(jsonformat(err)))
                 } else {
                     reply(`Kirim perintah ${prefix}demote @tag atau nomor atau reply pesan orang yang ingin di demote`)
+                 return reply(`Sukses menurunkan ${pushname} menjadi member`)
                 }
                 break
             case prefix+'linkgc': case prefix+'linkgrup': case prefix+'linkgroup':
@@ -2195,6 +2215,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.groupUpdateDescription(from, q)
                 .then((res) => reply(jsonformat(res)))
                 .catch((err) => reply(jsonformat(err)))
+                return reply(`Sukses\nDesc Group Telah Berubah Menjadi ${groupMetadata.desc}`)
                 break
             case prefix+'setgrupname':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2204,6 +2225,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.groupUpdateSubject(from, q)
                 .then((res) => reply(jsonformat(res)))
                 .catch((err) => reply(jsonformat(err)))
+                return reply(`Sukses\nNama Group Telah Berubah Menjadi ${groupName}`)
                 break
             case prefix+'sider': case prefix+'chatinfo':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2229,6 +2251,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.groupSettingChange(from, "announcement", false)
                 .then((res) => reply(jsonformat(res)))
                 .catch((err) => reply(jsonformat(err)))
+                return reply(`Sukses\nGroup Sudah Dibuka`)
                 break
             case prefix+'closegrup':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2237,6 +2260,8 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.groupSettingChange(from, "announcement", true)
                 .then((res) => reply(jsonformat(res)))
                 .catch((err) => reply(jsonformat(err)))
+                xinz.sendmessage()
+                return reply(`Sukses\nGroup Sudah Ditutup`)
                 break
             case prefix+'setppgrup':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2250,7 +2275,8 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     .catch((err) => reply(jsonformat(err)))
                 } else {
                     reply(`Kirim atau tag gambar dengan caption ${prefix}setppgrup`)
-                }
+                   }
+                   return reply(`Sukses mengubah pp grup`)  
                 break
             case prefix+'join':
                 if (!isOwner) return reply(mess.OnlyOwner)
@@ -2260,6 +2286,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.acceptInvite(code)
                 .then((res) => reply(jsonformat(res)))
                 .catch((err) => reply(jsonformat(err)))
+                reply(`Sukses Join`)
                 break
             case prefix+'tagall':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2390,7 +2417,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                     reply('Anti wa.me grup nonaktif')
                 } else {
                     reply(`Pilih enable atau disable\nContoh : ${prefix}antiwame enable`)
-                }
+                   }
                 break
             case prefix+'welcome':
                 if (!isGroup) return reply(mess.OnlyGrup)
@@ -2429,7 +2456,7 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 }
                 break
             case prefix+'sound': case prefix+'music':
-                reply(`*Pilihan*\n${prefix}sound1\n${prefix}sound2\n${prefix}sound3\n${prefix}sound4\n${prefix}sound5\n${prefix}sound6\n${prefix}sound7\n${prefix}sound8\n${prefix}sound9\n${prefix}sound10`)
+                reply(`*Pilihan:*\n${prefix}sound1\n${prefix}sound2\n${prefix}sound3\n${prefix}sound4\n${prefix}sound5\n${prefix}sound6\n${prefix}sound7\n${prefix}sound8\n${prefix}sound9\n${prefix}sound10`)
                 break
             case prefix+'sound1':{
                 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
@@ -2500,6 +2527,115 @@ _Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
                 xinz.sendMessage(from, son, audio, { quoted: msg })              
                 limitAdd(sender, limit)
                 }
+                break
+            case prefix+'video': case prefix+'vl':
+                reply(`*Pilihan:*\n${prefix}video1\n${prefix}video2\n${prefix}video3\n${prefix}video4\n${prefix}video5\n${prefix}video6\n${prefix}video7\n${prefix}video8\n${prefix}video9\n${prefix}video10`)
+                break
+            case prefix+'video1':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video1.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                break
+            case prefix+'video2':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video2.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video3':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video3.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video4':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video4.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video5':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video5.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video6':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video6.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video7':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video7.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video8':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video8.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video9':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video9.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                 break
+            case prefix+'video10':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video10.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit) 
+                }
+                break
+            case prefix+'video11':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video11.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                break
+            case prefix+'video12':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video12.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                break
+            case prefix+'video13':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video13.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                break
+            case prefix+'video14':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video14.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+                break
+            case prefix+'video15':{
+                if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
+                let son = fs.readFileSync('./media/video/video15.mp4')
+                xinz.sendMessage(from, son, video, { quoted: msg })              
+                limitAdd(sender, limit)
+                }
+
                 break
         }
     } catch (err) {
