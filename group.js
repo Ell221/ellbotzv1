@@ -27,7 +27,7 @@ module.exports = async(xinz, anj, welcome, left) => {
             } catch {
                 var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
             }
-            xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Hai @${anj.participants[0].split("@")[0]}, selamat datang di ${groupName}\nJangan lupa baca Desc yaa: ${groupMetadata.desc}\nSEMOGA BETAH YAA ><`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
+            xinz.sendMessage(anj.jid, await getBuffer(pic), MessageType.image, {caption: `Hai @${anj.participants[0].split("@")[0]}, selamat datang di ${groupName}\n*Intro dulu*\n\n├─ ❏ Nama:\n├─ ❏ Umur:\n├─ ❏ Asal kota:\n├─ ❏ Kelas:\n├─ ❏ Jenis kelamin:\n\n*Jangan lupa baca desc grup yaa* :\n${mdata.desc}\n\nSEMOGA BETAH YAA ><`, contextInfo: {"mentionedJid": [anj.participants[0]]}})
         }
     } else if (anj.action === 'remove' && isLeft){
         try {

@@ -8,7 +8,6 @@ exports.newMenu = (ucapan, ownerName, botName, prefix, pendaftar, runtime, pushn
 ╒═══ 《 *${botName}* 》 ═══
 ├────────────────────
 ├≽ *Creator : ${ownerName}*
-├≽ *Coowner : Fikriapri (github.com/Fikriapri)*
 ├≽ *Lib : Baileys V.3.5.1*
 ├≽ *Prefix : 「 ${prefix} 」*
 ├≽ *Total Fitur : 200+*
@@ -17,7 +16,8 @@ exports.newMenu = (ucapan, ownerName, botName, prefix, pendaftar, runtime, pushn
 ├≽ *Pukul : ${jam}*
 ├≽ *Runtime Bot*
 ├≽ *${runtime}*
-├≽ *[ _WARNING!!!_ ] : BOT AKTIF HANYA SAMPAI JAM 22.00*
+├≽ *[ _WARNING!!!_ ] :*
+├≽ *BOT AKTIF HANYA SAMPAI JAM 22.00*
 ├────────────────────
 ╞═══ 《 *USER INFO* 》 ═══
 ├────────────────────
